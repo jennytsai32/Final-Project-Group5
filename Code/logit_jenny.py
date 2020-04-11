@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[7]:
+# In[1]:
 
 
 # Importing the required packages
@@ -37,23 +37,23 @@ print("Dataset first few rows:\n ")
 print(data.head(3))
 
 
-# In[4]:
+# In[3]:
 
 
-data.drop(['Unnamed: 0','Station', 'Railway','Give_Way', 'No_Exit', 'Traffic_Calming', 'Bump', 'Roundabout'], axis=1, inplace=True)
+data.drop('Unnamed: 0', axis=1, inplace=True)
 print(data.columns)
 
 
-# In[5]:
+# In[4]:
 
 
 # split the dataset
 # separate the target variable
-X = data.values[:, 1:]
+X = data.values[:, 1:21]
 Y = data.values[:,0]
 
 
-# In[8]:
+# In[5]:
 
 
 class_le = LabelEncoder()
@@ -61,16 +61,14 @@ class_le = LabelEncoder()
 y = class_le.fit_transform(Y)
 
 
-# In[9]:
-
-
+# In[6]:
 
 
 # split the dataset into train and test
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=100)
 
 
-# In[10]:
+# In[7]:
 
 
 # perform training
@@ -81,7 +79,7 @@ clf = LogisticRegression()
 clf.fit(X_train, y_train)
 
 
-# In[11]:
+# In[8]:
 
 
 # make predictions
@@ -91,7 +89,7 @@ y_pred = clf.predict(X_test)
 y_pred_score = clf.predict_proba(X_test)
 
 
-# In[12]:
+# In[9]:
 
 
 # calculate metrics
@@ -109,7 +107,7 @@ print("ROC_AUC : ", roc_auc_score(y_test,y_pred_score[:,1]) * 100)
 print("\n")
 
 
-# In[14]:
+# In[10]:
 
 
 # confusion matrix

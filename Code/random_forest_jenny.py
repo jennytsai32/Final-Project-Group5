@@ -1,4 +1,3 @@
-# Test Test
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -24,10 +23,27 @@ from sklearn.metrics import roc_auc_score
 
 # import Dataset
 # read data as panda dataframe
-data = pd.read_csv('df.csv')
+data = pd.read_csv('US_data_2019_draft_2.csv')
+
+data.columns
+
+
+# In[3]:
+
 
 # drop unnnecessary columns
-data.drop(["Unnamed: 0","Start_Time","End_Time", "City", "State", "Turning_Loop", "Weather_Condition"], axis=1, inplace=True)
+# data.drop("Unnamed: 0", axis=1, inplace=True)
+data.drop(['Unnamed: 0', 'ID', 'Source', 'TMC', 'Start_Time',
+       'End_Time', 'Start_Lat', 'Start_Lng', 'End_Lat', 'End_Lng',
+       'Distance(mi)', 'Description', 'Number', 'Street', 'Side', 'City',
+       'County', 'State', 'Zipcode', 'Country', 'Timezone', 'Airport_Code',
+       'Weather_Timestamp','Civil_Twilight', 'Nautical_Twilight', 'Astronomical_Twilight', 'Turning_Loop'], axis=1, inplace=True)
+
+data.columns
+
+
+# In[4]:
+
 
 # printing the dataset rows and columns
 print("Dataset No. of Rows: ", data.shape[0])
@@ -38,7 +54,7 @@ print("Dataset first few rows:\n ")
 print(data.head(5))
 
 
-# In[3]:
+# In[ ]:
 
 
 # printing the struture of the dataset
@@ -46,7 +62,7 @@ print("Dataset info:\n ")
 print(data.info())
 
 
-# In[4]:
+# In[ ]:
 
 
 # printing the summary statistics of the dataset
@@ -64,54 +80,57 @@ print(data.isnull().sum())
 # In[6]:
 
 
-data = data.dropna()
+# drop unnnecessary columns
+data.drop(['Wind_Direction', 'Weather_Condition'], axis=1, inplace=True)
+
+data.columns
 
 
 # In[7]:
 
 
-print(data.shape)
-print("Sum of NULL values in each column. ")
-print(data.isnull().sum())
-
-
-# In[8]:
-
-
-data['Severity'] = data['Severity'].apply(lambda x:'0' if x<=2 else '1')
+#data['Severity'] = data['Severity'].apply(lambda x:'0' if x<=2 else '1')
 severity_freq = data.groupby('Severity').Severity.count()
 print(severity_freq)
 print()
 
-for c in data.iloc[:, 7:].columns:
+for c in data.iloc[:, 8:21].columns:
     freq = data.groupby(c)[c].count()
     print(freq)
     print()
 
 
-# In[9]:
+# In[8]:
 
 
-data.iloc[:, 7:] = data.iloc[:, 7:].replace({True:"1", False:"0"})
+data = data.dropna()
+
+
+# In[12]:
+
+
+# Recode X variables
+data.iloc[:, 8:20] = data.iloc[:, 8:20].replace({True:"1", False:"0"})
+data['Sunrise_Sunset'] = data['Sunrise_Sunset'].replace({"Day":"1", "Night":"0"})
 print(data.head())
 
 
-# In[10]:
+# In[13]:
 
 
 
 Y = data.values[:, 0]
-X = data.values[:, 1:]
+X = data.values[:, 1:22]
 
 
-# In[11]:
+# In[14]:
 
 
 # split the dataset into train and test
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=100)
 
 
-# In[12]:
+# In[15]:
 
 
 # perform training with random forest with all columns
@@ -122,7 +141,7 @@ clf = RandomForestClassifier(n_estimators=100)
 clf.fit(X_train, y_train)
 
 
-# In[13]:
+# In[17]:
 
 
 # plot feature importances
@@ -130,7 +149,7 @@ clf.fit(X_train, y_train)
 importances = clf.feature_importances_
 
 # convert the importances into one-dimensional 1darray with corresponding df column names as axis labels
-f_importances = pd.Series(importances, data.iloc[:, 1:].columns)
+f_importances = pd.Series(importances, data.iloc[:, 1:22].columns)
 
 # sort the array in descending order of the importances
 f_importances.sort_values(ascending=False, inplace=True)
@@ -143,7 +162,7 @@ plt.tight_layout()
 plt.show()
 
 
-# In[14]:
+# In[18]:
 
 
 # select features to perform training with random forest with k columns
@@ -154,20 +173,20 @@ newX_train = X_train[:, clf.feature_importances_.argsort()[::-1][:10]]
 newX_test = X_test[:, clf.feature_importances_.argsort()[::-1][:10]]
 
 
-# In[15]:
+# In[25]:
 
 
 # perform training with random forest with k columns
 # specify random forest classifier
 # n_estimators=100: The number of trees in the forest.
 # bootstrap: boolean, optional (default=True)
-clf_k_features = RandomForestClassifier(n_estimators=100)
+clf_k_features = RandomForestClassifier(n_estimators=1000)
 
 # train the model
 clf_k_features.fit(newX_train, y_train)
 
 
-# In[16]:
+# In[20]:
 
 
 # make predictions
@@ -181,7 +200,7 @@ y_pred_k_features = clf_k_features.predict(newX_test)
 y_pred_k_features_score = clf_k_features.predict_proba(newX_test)
 
 
-# In[17]:
+# In[21]:
 
 
 # calculate metrics gini model
@@ -209,7 +228,7 @@ print("\n")
 print("ROC_AUC : ", roc_auc_score(y_test,y_pred_k_features_score[:,1]) * 100)
 
 
-# In[19]:
+# In[22]:
 
 
 # confusion matrix for gini model
@@ -231,7 +250,7 @@ plt.xlabel('Predicted label',fontsize=20)
 plt.tight_layout()
 
 
-# In[21]:
+# In[23]:
 
 
 # confusion matrix for entropy model
@@ -255,7 +274,7 @@ plt.tight_layout()
 plt.show()
 
 
-# In[23]:
+# In[24]:
 
 
 data.to_csv('df_new.csv')
