@@ -62,7 +62,7 @@ severity_freq = data.groupby('Severity').Severity.count()
 print(severity_freq)
 print()
 
-for c in data.iloc[:, 8:21].columns:
+for c in data.iloc[:, 6:19].columns:
     freq = data.groupby(c)[c].count()
     print(freq)
     print()
@@ -90,7 +90,7 @@ X = data.values[:, 1:19]
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=0.3, random_state=100)
 
 # perform training with random forest using all features
-clf = RandomForestClassifier(n_estimators=100,criterion='entropy')
+clf = RandomForestClassifier(n_estimators=100,criterion='gini')
 clf.fit(X_train, y_train)
 
 # get feature importances
@@ -115,7 +115,7 @@ newX_train = X_train[:, clf.feature_importances_.argsort()[::-1][:10]]
 newX_test = X_test[:, clf.feature_importances_.argsort()[::-1][:10]]
 
 # perform training with random forest with top 10 features
-clf_k_features = RandomForestClassifier(n_estimators=100,criterion='entropy')
+clf_k_features = RandomForestClassifier(n_estimators=100,criterion='gini')
 clf_k_features.fit(newX_train, y_train)
 
 #-------------------------- Part IV: Performance Evaluation --------------------------#
