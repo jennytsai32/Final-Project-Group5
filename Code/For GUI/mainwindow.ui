@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>820</width>
-    <height>600</height>
+    <width>946</width>
+    <height>738</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,14 +20,14 @@
    <widget class="QTabWidget" name="tabWidget">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>10</y>
-      <width>631</width>
-      <height>541</height>
+      <x>20</x>
+      <y>0</y>
+      <width>881</width>
+      <height>691</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_loading">
      <attribute name="title">
@@ -36,7 +36,7 @@
      <widget class="QPushButton" name="pushButton_loading">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>260</x>
         <y>10</y>
         <width>191</width>
         <height>41</height>
@@ -49,7 +49,7 @@
      <widget class="QTextEdit" name="textEdit_output">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>70</x>
         <y>110</y>
         <width>591</width>
         <height>391</height>
@@ -59,10 +59,10 @@
      <widget class="QProgressBar" name="progressBar">
       <property name="geometry">
        <rect>
-        <x>137</x>
-        <y>22</y>
+        <x>160</x>
+        <y>70</y>
         <width>411</width>
-        <height>111</height>
+        <height>21</height>
        </rect>
       </property>
       <property name="minimumSize">
@@ -83,21 +83,21 @@
      <widget class="QPushButton" name="pushButton_EDA">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>10</y>
-        <width>112</width>
+        <x>240</x>
+        <y>80</y>
+        <width>201</width>
         <height>32</height>
        </rect>
       </property>
       <property name="text">
-       <string>EDA Plot</string>
+       <string>Plot</string>
       </property>
      </widget>
      <widget class="MplWidget" name="MplWidget" native="true">
       <property name="geometry">
        <rect>
-        <x>69</x>
-        <y>70</y>
+        <x>60</x>
+        <y>140</y>
         <width>611</width>
         <height>361</height>
        </rect>
@@ -109,44 +109,306 @@
        </size>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_EDA2">
+     <widget class="QComboBox" name="comboBox_eda">
       <property name="geometry">
        <rect>
-        <x>350</x>
-        <y>10</y>
-        <width>112</width>
+        <x>120</x>
+        <y>30</y>
+        <width>161</width>
         <height>32</height>
        </rect>
       </property>
-      <property name="text">
-       <string>EDA Plot 2</string>
-      </property>
+      <item>
+       <property name="text">
+        <string>Select</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Severity</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Temperature</string>
+       </property>
+      </item>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tab_preprocessing">
-     <attribute name="title">
-      <string>Preprocessing</string>
-     </attribute>
-     <widget class="QTableView" name="tableView">
+     <widget class="QComboBox" name="comboBox_eda_2">
       <property name="geometry">
        <rect>
-        <x>25</x>
-        <y>31</y>
-        <width>611</width>
-        <height>451</height>
+        <x>310</x>
+        <y>30</y>
+        <width>161</width>
+        <height>30</height>
        </rect>
       </property>
+      <item>
+       <property name="text">
+        <string>Severity</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Waether Condtion</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>10</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Weather Condtion</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>10</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Road Condtion</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>10</y>
+        <width>111</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Severity</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_eda_3">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>30</y>
+        <width>161</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Severity</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_features">
      <attribute name="title">
       <string>Feature Selection</string>
      </attribute>
+     <widget class="MplWidget" name="MplWidget_2" native="true">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>831</width>
+        <height>601</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>611</width>
+        <height>300</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_feature">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>620</y>
+        <width>191</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Run Random Forest</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_modeling">
      <attribute name="title">
-      <string>Modeling</string>
+      <string>RF - Bagging</string>
      </attribute>
+     <widget class="QPushButton" name="pushButton_rf_bagging">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>520</y>
+        <width>161</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Run Model</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>530</x>
+        <y>20</y>
+        <width>181</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Classification Report</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>20</y>
+        <width>181</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Confustion Matrix</string>
+      </property>
+     </widget>
+     <widget class="MplWidget" name="MplWidget_3" native="true">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>50</y>
+        <width>440</width>
+        <height>441</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="textEdit_classification_report">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>60</y>
+        <width>441</width>
+        <height>421</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Adaptive Boosting Trees</string>
+     </attribute>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>70</x>
+        <y>10</y>
+        <width>181</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Confustion Matrix</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="textEdit_2">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>40</y>
+        <width>341</width>
+        <height>311</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>380</y>
+        <width>111</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Feature Selection</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_4">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>410</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>All features</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Top 10 features</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>450</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Run Model</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>390</x>
+        <y>10</y>
+        <width>181</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Classification Report</string>
+      </property>
+     </widget>
+     <widget class="QGraphicsView" name="graphicsView_3">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>331</width>
+        <height>311</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -155,7 +417,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>820</width>
+     <width>946</width>
      <height>22</height>
     </rect>
    </property>
