@@ -19,3 +19,6 @@ class MplWidget(QWidget):
         self.setLayout(vertical_layout)
 
         self.canvas.updateGeometry()
+        self.canvas.axes.cla()
+        self.canvas.axes.clear()
+        self.canvas.draw()
