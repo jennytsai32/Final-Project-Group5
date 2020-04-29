@@ -12,14 +12,11 @@ This project is owned by Abdulaziz Gebril, Jenny Tsai, & Mojahid Osman. Below ar
 
 (4) Codes:  
 
-    (a) Preprocessing & EDA codes:
+    (a) Preprocessing & EDA codes
     
-    (b) Modeling codes: 
-        b1) Modeling_RandomForest.py
-        b2) Modeling_AdaBoost.py
-        The files also included some 2nd stage preprocessing prior to modeling.
+    (b) Modeling codes
     
-    (c) GUI codes:  
+    (c) GUI codes 
     
     
 (5) Indivisual report folders created by each team member: You will find the individual contribution to this project and the codes created by each team member.
